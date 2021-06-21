@@ -7,7 +7,7 @@ const btnRouteMode = document.getElementById('route_mode');
 const btnFormClose = document.getElementById('form_close');
 const btnRequestDelete = document.getElementById('request_delete_button');
 const elevationContainer = document.getElementById('elevation_container');
-const errorContainer = document.getElementById('error_toast');
+
 let map;
 let pageMode = 'view';
 let drawingManager = null;
@@ -801,26 +801,4 @@ function drawChart(route) {
     };
     let chart = new google.visualization.LineChart(elevationContainer);
     chart.draw(data, options);
-}
-
-//error handling
-function constructErrorMessage(message){
-    return `
-        <div class="d-flex">
-            <div class="toast-body">
-                ${message}
-            </div>
-        </div>
-    `;
-}
-function throwPageError(message){
-    clearErrors();
-    errorContainer.innerHTML = constructErrorMessage(message);
-    $("#error_toast").toast({
-        delay: 3000
-    });
-    $("#error_toast").toast('show');
-}
-function clearErrors(){
-    errorContainer.innerHTML = '';
 }
